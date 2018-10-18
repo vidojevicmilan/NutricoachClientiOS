@@ -1,0 +1,6 @@
+framework module Pods_NutricoachUITests {
+  umbrella header "Pods-NutricoachUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
