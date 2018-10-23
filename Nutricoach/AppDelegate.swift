@@ -18,9 +18,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // Configure Firebase
+        
         FirebaseApp.configure()
-        let database = Database.database().reference()
-        database.setValue("NEW DATA")
+//        let database = Database.database().reference()
+//        database.setValue("NEW DATA")
+        
+//        Plist manipulaiton
+//        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+        
+//        Encoding/Decoding to plist file
+//        var stringArray = ["asda","asdas"]
+//        let encoder = PropertyListEncoder()
+//        do{
+//            let data = try encoder.encode(stringArray)
+//            try data.write(to: dataFilePath!)
+//        }
+//        catch {}
+//
+//
+//        if let data = try? Data(contentsOf: dataFilePath!){
+//            let decoder = PropertyListDecoder()
+//            do{
+//                stringArray = try decoder.decode([String].self, from: data)
+//                print(stringArray)
+//            }
+//            catch{}
+//        }
+        
         
         return true
     }
