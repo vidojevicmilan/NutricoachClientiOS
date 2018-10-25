@@ -11,6 +11,10 @@
 		40E71A680E7A712AA55CA0E9 /* Pods_Nutricoach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E7E895EFE5E75ABC652DB7 /* Pods_Nutricoach.framework */; };
 		4CA5437C9F0E27897DB9A2D8 /* Pods_NutricoachUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E95138216808452D917D19 /* Pods_NutricoachUITests.framework */; };
 		F107C0DF217F5D7C006C374D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107C0DE217F5D7C006C374D /* HomeViewController.swift */; };
+		F134DE3721823D9400E5C676 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F134DE3621823D9400E5C676 /* MainTabViewController.swift */; };
+		F134DE392182407500E5C676 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F134DE382182407500E5C676 /* ChatViewController.swift */; };
+		F134DE3B218240C500E5C676 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F134DE3A218240C500E5C676 /* ProfileViewController.swift */; };
+		F134DE3D2182411400E5C676 /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F134DE3C2182411400E5C676 /* BlogViewController.swift */; };
 		F1AE1094216EE4F500C5A185 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AE1093216EE4F500C5A185 /* AppDelegate.swift */; };
 		F1AE1096216EE4F500C5A185 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AE1095216EE4F500C5A185 /* ViewController.swift */; };
 		F1AE1099216EE4F500C5A185 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1AE1097216EE4F500C5A185 /* Main.storyboard */; };
@@ -48,6 +52,10 @@
 		A7F00D1F8A90C8A5EFDC0963 /* Pods-NutricoachUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutricoachUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NutricoachUITests/Pods-NutricoachUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C3C63530DDE632A2CDFB31B5 /* Pods-Nutricoach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nutricoach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nutricoach/Pods-Nutricoach.debug.xcconfig"; sourceTree = "<group>"; };
 		F107C0DE217F5D7C006C374D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F134DE3621823D9400E5C676 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
+		F134DE382182407500E5C676 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		F134DE3A218240C500E5C676 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F134DE3C2182411400E5C676 /* BlogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewController.swift; sourceTree = "<group>"; };
 		F1AE1090216EE4F500C5A185 /* Nutricoach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nutricoach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1AE1093216EE4F500C5A185 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1AE1095216EE4F500C5A185 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -198,7 +206,11 @@
 			isa = PBXGroup;
 			children = (
 				F1AE1095216EE4F500C5A185 /* ViewController.swift */,
+				F134DE3621823D9400E5C676 /* MainTabViewController.swift */,
 				F107C0DE217F5D7C006C374D /* HomeViewController.swift */,
+				F134DE382182407500E5C676 /* ChatViewController.swift */,
+				F134DE3A218240C500E5C676 /* ProfileViewController.swift */,
+				F134DE3C2182411400E5C676 /* BlogViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -424,9 +436,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F134DE3B218240C500E5C676 /* ProfileViewController.swift in Sources */,
 				F1AE1096216EE4F500C5A185 /* ViewController.swift in Sources */,
 				F1AE1094216EE4F500C5A185 /* AppDelegate.swift in Sources */,
 				F107C0DF217F5D7C006C374D /* HomeViewController.swift in Sources */,
+				F134DE392182407500E5C676 /* ChatViewController.swift in Sources */,
+				F134DE3721823D9400E5C676 /* MainTabViewController.swift in Sources */,
+				F134DE3D2182411400E5C676 /* BlogViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

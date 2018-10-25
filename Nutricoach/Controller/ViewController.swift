@@ -73,6 +73,9 @@ class ViewController: UIViewController {
     }
     
     func signinSuccessfull(){
+//        let mainTabController = storyboard?.instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabViewController
+//        mainTabController.selectedViewController = mainTabController.viewControllers?[1]
+//        present(mainTabController,animated: true,completion: nil)
         performSegue(withIdentifier: "goToHome", sender: self)
     }
     

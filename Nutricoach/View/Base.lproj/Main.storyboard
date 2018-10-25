@@ -57,40 +57,102 @@
                     <connections>
                         <outlet property="emailTextView" destination="9ee-ZT-ccx" id="U0R-xQ-QiI"/>
                         <outlet property="passwordTextView" destination="SZH-3k-Sx1" id="A3s-jr-bU7"/>
-                        <segue destination="BAM-zZ-bW2" kind="show" identifier="goToHome" id="1dr-Tj-JX6"/>
+                        <segue destination="0Ec-5n-9iu" kind="show" identifier="goToHome" id="MUe-dP-l1o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="135.19999999999999" y="127.28635682158921"/>
         </scene>
-        <!--Home View Controller-->
-        <scene sceneID="dvo-C3-czW">
+        <!--Chat-->
+        <scene sceneID="2ya-lf-BRb">
             <objects>
-                <viewController id="BAM-zZ-bW2" customClass="HomeViewController" customModule="Nutricoach" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="B6n-s3-dCe">
+                <viewController id="eZb-Nj-SzY" customClass="ChatViewController" customModule="Nutricoach" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dbx-pn-T1k">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home Screen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zf7-wK-8PB">
-                                <rect key="frame" x="100" y="120" width="175" height="27.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Zf7-wK-8PB" firstAttribute="top" secondItem="QmU-g0-UAO" secondAttribute="top" constant="100" id="Pdp-hA-sMu"/>
-                            <constraint firstItem="QmU-g0-UAO" firstAttribute="trailing" secondItem="Zf7-wK-8PB" secondAttribute="trailing" constant="100" id="eek-Pn-8dE"/>
-                            <constraint firstItem="Zf7-wK-8PB" firstAttribute="leading" secondItem="QmU-g0-UAO" secondAttribute="leading" constant="100" id="mC0-Kl-kJ4"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="QmU-g0-UAO"/>
+                        <viewLayoutGuide key="safeArea" id="ii8-xW-h7I"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Chat" image="icons8-communication-30" selectedImage="icons8-communication-30" id="kko-MS-QLe"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YuK-h6-634" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iH9-0g-Srz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="957.60000000000002" y="126.38680659670166"/>
+            <point key="canvasLocation" x="1844" y="459"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="L5L-q0-2EC">
+            <objects>
+                <viewController id="KeO-d7-0CG" customClass="ProfileViewController" customModule="Nutricoach" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lhp-Aa-ahh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="KcL-8G-bfs"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="icons8-admin-settings-male-30" selectedImage="icons8-admin-settings-male-30" id="FWO-WM-e8F"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yGI-Sh-rvQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1844" y="1146"/>
+        </scene>
+        <!--Blog-->
+        <scene sceneID="QrB-hW-Uyy">
+            <objects>
+                <viewController id="XmE-MB-dgK" customClass="BlogViewController" customModule="Nutricoach" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BIp-US-mZX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="4hT-1o-gOV"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Blog" image="icons8-blog-30" selectedImage="icons8-blog-30" id="Qre-EA-hM3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CGc-N5-ufa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1844" y="-875"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="WVL-7J-2ig">
+            <objects>
+                <viewController id="cyM-Ka-HGi" customClass="HomeViewController" customModule="Nutricoach" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mE0-WB-tQM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="nqJ-6g-7MG"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="icons8-top-menu-30" selectedImage="icons8-top-menu-30" id="l1N-Z7-ii3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tZd-dq-oku" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1844" y="-206"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="T5Q-za-P0m">
+            <objects>
+                <tabBarController id="0Ec-5n-9iu" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Hw-w1-bdo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="cyM-Ka-HGi" kind="relationship" relationship="viewControllers" id="j3F-8G-MUh"/>
+                        <segue destination="XmE-MB-dgK" kind="relationship" relationship="viewControllers" id="BAA-HR-zcI"/>
+                        <segue destination="eZb-Nj-SzY" kind="relationship" relationship="viewControllers" id="p6m-t5-siN"/>
+                        <segue destination="KeO-d7-0CG" kind="relationship" relationship="viewControllers" id="Fot-69-NNm"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IJS-1Z-lDG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="894" y="126"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-admin-settings-male-30" width="22.5" height="22.5"/>
+        <image name="icons8-blog-30" width="22.5" height="22.5"/>
+        <image name="icons8-communication-30" width="22.5" height="22.5"/>
+        <image name="icons8-top-menu-30" width="22.5" height="22.5"/>
+    </resources>
 </document>
