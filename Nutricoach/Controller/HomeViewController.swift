@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         //self.tabBar.frame = CGRectInset(self.tabBar.frame,0,-6);
+        print("HOME VIEW CONTROLLER")
         
     }
     

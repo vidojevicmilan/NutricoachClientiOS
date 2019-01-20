@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,17 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="E-mail" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9ee-ZT-ccx">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9ee-ZT-ccx">
                                 <rect key="frame" x="20" y="521" width="335" height="30"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SZH-3k-Sx1">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SZH-3k-Sx1">
                                 <rect key="frame" x="20" y="559" width="335" height="30"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2P-Vq-hHE">
                                 <rect key="frame" x="20" y="597" width="335" height="30"/>
@@ -39,16 +39,24 @@
                                     <action selector="signInButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DW5-s4-z1d"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nutricoach" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tH7-0h-rh1">
+                                <rect key="frame" x="0.0" y="200" width="375" height="45.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="38"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="d2P-Vq-hHE" firstAttribute="top" secondItem="SZH-3k-Sx1" secondAttribute="bottom" constant="8" id="4j2-dQ-JWa"/>
+                            <constraint firstItem="tH7-0h-rh1" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="200" id="GyU-x8-wQM"/>
                             <constraint firstItem="SZH-3k-Sx1" firstAttribute="top" secondItem="9ee-ZT-ccx" secondAttribute="bottom" constant="8" id="INb-9B-yMM"/>
                             <constraint firstItem="d2P-Vq-hHE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="LWM-V4-JW5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="d2P-Vq-hHE" secondAttribute="bottom" constant="40" id="Qq3-1T-hbv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d2P-Vq-hHE" secondAttribute="trailing" constant="20" id="QvD-jc-tFy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9ee-ZT-ccx" secondAttribute="trailing" constant="20" id="WWM-4h-qWJ"/>
+                            <constraint firstItem="tH7-0h-rh1" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="bW6-NM-gDf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SZH-3k-Sx1" secondAttribute="trailing" constant="20" id="ju1-C7-gg2"/>
+                            <constraint firstItem="tH7-0h-rh1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kEh-j0-HQr"/>
                             <constraint firstItem="SZH-3k-Sx1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="lhA-YV-o80"/>
                             <constraint firstItem="9ee-ZT-ccx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="wMR-Eb-aP3"/>
                         </constraints>
@@ -57,7 +65,9 @@
                     <connections>
                         <outlet property="emailTextView" destination="9ee-ZT-ccx" id="U0R-xQ-QiI"/>
                         <outlet property="passwordTextView" destination="SZH-3k-Sx1" id="A3s-jr-bU7"/>
-                        <segue destination="0Ec-5n-9iu" kind="show" identifier="goToHome" id="MUe-dP-l1o"/>
+                        <outlet property="signInButton" destination="d2P-Vq-hHE" id="SYa-wv-dal"/>
+                        <outlet property="titleLabel" destination="tH7-0h-rh1" id="MGD-lZ-LRb"/>
+                        <segue destination="0Ec-5n-9iu" kind="show" identifier="goToHome" id="Oc4-dZ-YIS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -87,14 +97,38 @@
                     <view key="view" contentMode="scaleToFill" id="Lhp-Aa-ahh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Toh-Zu-n16">
+                                <rect key="frame" x="0.0" y="568" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Yh4-dP-sCx"/>
+                                </constraints>
+                                <state key="normal" title="Sign Out">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="signOutButtonClick:" destination="KeO-d7-0CG" eventType="touchUpInside" id="YYb-eq-0DZ"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="backToLogin" id="1Vk-fa-uAd"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Toh-Zu-n16" firstAttribute="leading" secondItem="KcL-8G-bfs" secondAttribute="leading" id="VGf-X9-D6K"/>
+                            <constraint firstItem="Toh-Zu-n16" firstAttribute="trailing" secondItem="KcL-8G-bfs" secondAttribute="trailing" id="XeH-cL-fZu"/>
+                            <constraint firstItem="KcL-8G-bfs" firstAttribute="bottom" secondItem="Toh-Zu-n16" secondAttribute="bottom" id="Yer-a0-R9c"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="KcL-8G-bfs"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="icons8-admin-settings-male-30" selectedImage="icons8-admin-settings-male-30" id="FWO-WM-e8F"/>
+                    <connections>
+                        <outlet property="signOutButton" destination="Toh-Zu-n16" id="SeY-u0-fFi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yGI-Sh-rvQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1844" y="1146"/>
+            <point key="canvasLocation" x="1844" y="1145.577211394303"/>
         </scene>
         <!--Blog-->
         <scene sceneID="QrB-hW-Uyy">
@@ -150,9 +184,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icons8-admin-settings-male-30" width="22.5" height="22.5"/>
-        <image name="icons8-blog-30" width="22.5" height="22.5"/>
-        <image name="icons8-communication-30" width="22.5" height="22.5"/>
-        <image name="icons8-top-menu-30" width="22.5" height="22.5"/>
+        <image name="icons8-admin-settings-male-30" width="37.5" height="37.5"/>
+        <image name="icons8-blog-30" width="37.5" height="37.5"/>
+        <image name="icons8-communication-30" width="37.5" height="37.5"/>
+        <image name="icons8-top-menu-30" width="37.5" height="37.5"/>
     </resources>
 </document>

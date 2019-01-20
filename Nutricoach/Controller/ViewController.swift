@@ -10,29 +10,59 @@ import UIKit
 import Firebase
 import SVProgressHUD
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate{
+    
+    
     
     @IBOutlet weak var emailTextView: UITextField!
     @IBOutlet weak var passwordTextView: UITextField!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    var userDefEmail :String?
+    var userDefPass :String?
+    var justSignedOut :Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        SVProgressHUD.show()
-        //Try signIn using UserDefaults E-mail & Password, if successfull, invoke Home Screen.
-        let userDefEmail = UserDefaults.standard.string(forKey: "firebaseEmail")
-        let userDefPass = UserDefaults.standard.string(forKey: "firebasePass")
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        SVProgressHUD.show(withStatus: "Welcome")
+        emailTextView.delegate = self
+        passwordTextView.delegate = self
+        assignbackground()
         
-        if(userDefEmail != nil && userDefPass != nil){
-            Auth.auth().signIn(withEmail: userDefEmail!, password: userDefPass!) { (result, error) in
-                if(result != nil){
-                    print("Signed In")
-                    self.signinSuccessfull()
+        //Listen for keyboard events
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        
+        //If not just logged out from profile VC
+        if(!justSignedOut){
+            //Try signIn using UserDefaults E-mail & Password, if successfull, invoke Home Screen.
+            userDefEmail = UserDefaults.standard.string(forKey: "firebaseEmail")
+            userDefPass = UserDefaults.standard.string(forKey: "firebasePass")
+            
+            if(userDefEmail != nil && userDefPass != nil){
+                Auth.auth().signIn(withEmail: userDefEmail!, password: userDefPass!) { (result, error) in
+                    if(result != nil){
+                        self.signinSuccessfull()
+                    }
                 }
+            }else{
+                SVProgressHUD.dismiss(withDelay: 1)
             }
+        }else{
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.none)
+            SVProgressHUD.showSuccess(withStatus: "Successfully signed out")
+            SVProgressHUD.dismiss(withDelay: 1)
         }
-        SVProgressHUD.dismiss()
+    }
+    
+    deinit{
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
 
     @IBAction func signInButtonPressed(_ sender: UIButton) {
@@ -46,15 +76,14 @@ class ViewController: UIViewController {
             //Attempt Firebase login/register
             Auth.auth().signIn(withEmail: email!, password: password!) { (result, error) in
                 if error != nil{
-                    print(error.debugDescription)
                     Auth.auth().createUser(withEmail: email!, password: password!, completion: { (result, error) in
                         if error != nil{
-                            print(error.debugDescription)
+                            Toast.show(message: "Error signing in and creating user", controller: self)
                         }
                         else{
                             Auth.auth().signIn(withEmail: email!, password: password!, completion: { (result, error) in
                                 if error != nil{
-                                    print(error.debugDescription)
+                                    Toast.show(message: "Error signing in", controller: self)
                                 }else{
                                     //write signedIn e-mail & password to UserDefaults
                                     UserDefaults.standard.set(email!, forKey: "firebaseEmail")
@@ -69,15 +98,70 @@ class ViewController: UIViewController {
                 }
             }
         }
-        SVProgressHUD.dismiss()
     }
+    
     
     func signinSuccessfull(){
-//        let mainTabController = storyboard?.instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabViewController
-//        mainTabController.selectedViewController = mainTabController.viewControllers?[1]
-//        present(mainTabController,animated: true,completion: nil)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.none)
+        SVProgressHUD.showSuccess(withStatus: "Signed In")
+        SVProgressHUD.dismiss(withDelay: 1)
         performSegue(withIdentifier: "goToHome", sender: self)
+        
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @objc func keyboardWillChange(notification: Notification){
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        
+        if notification.name == UIResponder.keyboardWillShowNotification ||
+            notification.name == UIResponder.keyboardWillChangeFrameNotification {
+            
+            view.frame.origin.y = -keyboardRect.height
+        } else{
+            view.frame.origin.y = 0
+        }
+    }
+    
+    func assignbackground(){
+        let background = UIImage(named: "background1")
+    
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+    
+    
+}
+
+class Toast{
+    static func show(message : String, controller: UIViewController) {
+        
+        let toastLabel = UILabel(frame: CGRect(x: 30, y: controller.view.frame.size.height-200, width: controller.view.frame.width-60, height: 35))
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = .center;
+        toastLabel.font = UIFont(name: "Montserrat-Light", size: 12.0)
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds  =  true
+        controller.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 1.0, delay: 2.0, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
+    }
 }
 
