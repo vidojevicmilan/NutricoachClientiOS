@@ -41,8 +41,10 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nutricoach" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tH7-0h-rh1">
                                 <rect key="frame" x="0.0" y="200" width="375" height="45.5"/>
+                                <color key="backgroundColor" white="1" alpha="0.34701412671232879" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="38"/>
                                 <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -73,22 +75,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="135.19999999999999" y="127.28635682158921"/>
-        </scene>
-        <!--Chat-->
-        <scene sceneID="2ya-lf-BRb">
-            <objects>
-                <viewController id="eZb-Nj-SzY" customClass="ChatViewController" customModule="Nutricoach" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dbx-pn-T1k">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="ii8-xW-h7I"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Chat" image="icons8-communication-30" selectedImage="icons8-communication-30" id="kko-MS-QLe"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iH9-0g-Srz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1844" y="459"/>
         </scene>
         <!--Profile-->
         <scene sceneID="L5L-q0-2EC">
@@ -128,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yGI-Sh-rvQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1844" y="1145.577211394303"/>
+            <point key="canvasLocation" x="1865" y="1280"/>
         </scene>
         <!--Blog-->
         <scene sceneID="QrB-hW-Uyy">
@@ -144,23 +130,83 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CGc-N5-ufa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1844" y="-875"/>
+            <point key="canvasLocation" x="1866" y="-179"/>
         </scene>
         <!--Home-->
         <scene sceneID="WVL-7J-2ig">
             <objects>
-                <viewController id="cyM-Ka-HGi" customClass="HomeViewController" customModule="Nutricoach" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home" id="cyM-Ka-HGi" customClass="HomeViewController" customModule="Nutricoach" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mE0-WB-tQM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RsY-Cf-NXG">
+                                <rect key="frame" x="290" y="533" width="60" height="60"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="U0v-nW-EPK"/>
+                                    <constraint firstAttribute="width" constant="60" id="lLo-o5-8lY"/>
+                                </constraints>
+                                <state key="normal" image="icons8-chat-bubble-30">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="30"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="chatButtonClick:" destination="cyM-Ka-HGi" eventType="touchUpInside" id="hfe-az-coE"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nqJ-6g-7MG" firstAttribute="bottom" secondItem="RsY-Cf-NXG" secondAttribute="bottom" constant="25" id="3BG-M2-2UV"/>
+                            <constraint firstItem="nqJ-6g-7MG" firstAttribute="trailing" secondItem="RsY-Cf-NXG" secondAttribute="trailing" constant="25" id="ReQ-rg-FrP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="nqJ-6g-7MG"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="icons8-top-menu-30" selectedImage="icons8-top-menu-30" id="l1N-Z7-ii3"/>
+                    <navigationItem key="navigationItem" id="5sk-0b-wKj"/>
+                    <connections>
+                        <outlet property="chatButton" destination="RsY-Cf-NXG" id="b3a-7u-6cC"/>
+                        <segue destination="AMk-UC-lDM" kind="show" identifier="goToChat" id="5on-eh-Rhg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tZd-dq-oku" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1844" y="-206"/>
+            <point key="canvasLocation" x="2950" y="502"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="ghh-qO-Mdc">
+            <objects>
+                <navigationController id="cJ0-uP-hAk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" selectedImage="icons8-top-menu-30" id="g9B-kE-ROa"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rzS-TF-9mc">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cyM-Ka-HGi" kind="relationship" relationship="rootViewController" id="dh1-cR-tDz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eyh-25-nzk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2054" y="503"/>
+        </scene>
+        <!--Chat-->
+        <scene sceneID="kOs-xI-CUi">
+            <objects>
+                <viewController title="Chat" id="AMk-UC-lDM" customClass="ChatViewController" customModule="Nutricoach" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yyN-XR-qhg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Qv5-kz-NL1"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pyQ-qF-Us2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3826" y="502"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="T5Q-za-P0m">
@@ -172,9 +218,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="cyM-Ka-HGi" kind="relationship" relationship="viewControllers" id="j3F-8G-MUh"/>
+                        <segue destination="cJ0-uP-hAk" kind="relationship" relationship="viewControllers" id="fXo-dI-43x"/>
                         <segue destination="XmE-MB-dgK" kind="relationship" relationship="viewControllers" id="BAA-HR-zcI"/>
-                        <segue destination="eZb-Nj-SzY" kind="relationship" relationship="viewControllers" id="p6m-t5-siN"/>
                         <segue destination="KeO-d7-0CG" kind="relationship" relationship="viewControllers" id="Fot-69-NNm"/>
                     </connections>
                 </tabBarController>
@@ -186,7 +231,7 @@
     <resources>
         <image name="icons8-admin-settings-male-30" width="37.5" height="37.5"/>
         <image name="icons8-blog-30" width="37.5" height="37.5"/>
-        <image name="icons8-communication-30" width="37.5" height="37.5"/>
+        <image name="icons8-chat-bubble-30" width="180" height="180"/>
         <image name="icons8-top-menu-30" width="37.5" height="37.5"/>
     </resources>
 </document>

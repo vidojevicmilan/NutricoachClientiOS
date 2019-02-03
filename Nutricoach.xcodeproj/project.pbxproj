@@ -23,6 +23,7 @@
 		F1AE10A9216EE4F700C5A185 /* NutricoachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AE10A8216EE4F700C5A185 /* NutricoachTests.swift */; };
 		F1AE10B4216EE4F700C5A185 /* NutricoachUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AE10B3216EE4F700C5A185 /* NutricoachUITests.swift */; };
 		F1AE10C2216EE74200C5A185 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1AE10C1216EE74200C5A185 /* GoogleService-Info.plist */; };
+		F1D27BAC21F8CB210084BBD5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D27BAB21F8CB210084BBD5 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		F1AE10B3216EE4F700C5A185 /* NutricoachUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutricoachUITests.swift; sourceTree = "<group>"; };
 		F1AE10B5216EE4F700C5A185 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1AE10C1216EE74200C5A185 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F1D27BAB21F8CB210084BBD5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F5F50552EB05200BF44DC4C9 /* Pods_NutricoachTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NutricoachTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -189,6 +191,7 @@
 		F1AE10C5216EE7C300C5A185 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F1D27BAB21F8CB210084BBD5 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -375,6 +378,8 @@
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageInputBar/MessageInputBar.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -384,6 +389,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageInputBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -441,6 +448,7 @@
 				F1AE1094216EE4F500C5A185 /* AppDelegate.swift in Sources */,
 				F107C0DF217F5D7C006C374D /* HomeViewController.swift in Sources */,
 				F134DE392182407500E5C676 /* ChatViewController.swift in Sources */,
+				F1D27BAC21F8CB210084BBD5 /* Message.swift in Sources */,
 				F134DE3721823D9400E5C676 /* MainTabViewController.swift in Sources */,
 				F134DE3D2182411400E5C676 /* BlogViewController.swift in Sources */,
 			);

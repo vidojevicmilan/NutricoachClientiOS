@@ -26,7 +26,6 @@ class ViewController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
         SVProgressHUD.show(withStatus: "Welcome")
         emailTextView.delegate = self
         passwordTextView.delegate = self
@@ -53,7 +52,6 @@ class ViewController: UIViewController, UITextFieldDelegate{
                 SVProgressHUD.dismiss(withDelay: 1)
             }
         }else{
-            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.none)
             SVProgressHUD.showSuccess(withStatus: "Successfully signed out")
             SVProgressHUD.dismiss(withDelay: 1)
         }
@@ -67,6 +65,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
 
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         SVProgressHUD.show()
+        SVProgressHUD.dismiss(withDelay: 1.5)
         let email = emailTextView.text
         let password = passwordTextView.text
         
@@ -78,12 +77,14 @@ class ViewController: UIViewController, UITextFieldDelegate{
                 if error != nil{
                     Auth.auth().createUser(withEmail: email!, password: password!, completion: { (result, error) in
                         if error != nil{
-                            Toast.show(message: "Error signing in and creating user", controller: self)
+                            SVProgressHUD.showError(withStatus: "Error registering")
                         }
                         else{
+                            let values = ["name": email,"email": email]
+                            Database.database().reference().child("users").child((result?.user.uid)!).updateChildValues(values as [AnyHashable : Any])
                             Auth.auth().signIn(withEmail: email!, password: password!, completion: { (result, error) in
                                 if error != nil{
-                                    Toast.show(message: "Error signing in", controller: self)
+                                    SVProgressHUD.showError(withStatus: "Error signing in")
                                 }else{
                                     //write signedIn e-mail & password to UserDefaults
                                     UserDefaults.standard.set(email!, forKey: "firebaseEmail")
@@ -102,7 +103,6 @@ class ViewController: UIViewController, UITextFieldDelegate{
     
     
     func signinSuccessfull(){
-        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.none)
         SVProgressHUD.showSuccess(withStatus: "Signed In")
         SVProgressHUD.dismiss(withDelay: 1)
         performSegue(withIdentifier: "goToHome", sender: self)
@@ -129,8 +129,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
     }
     
     func assignbackground(){
-        let background = UIImage(named: "background1")
-    
+        let number = Int.random(in: 1 ... 6)
+        let background = UIImage(named: "background\(number)")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
         imageView.contentMode =  UIView.ContentMode.scaleAspectFill
