@@ -1,4 +1,5 @@
 PODS:
+  - BulletinBoard (3.0.0)
   - ChameleonFramework (2.1.0):
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
@@ -76,6 +77,7 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - BulletinBoard
   - ChameleonFramework
   - Firebase
   - Firebase/Auth
@@ -85,6 +87,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BulletinBoard
     - ChameleonFramework
     - Firebase
     - FirebaseAnalytics
@@ -103,6 +106,7 @@ SPEC REPOS:
     - SVProgressHUD
 
 SPEC CHECKSUMS:
+  BulletinBoard: 927f4f9fd22503ceecd71bfc830fd65d5996593a
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Firebase: 6691d47562a780c26281ce8464518faafc90c610
   FirebaseAnalytics: 831f1f127f4a75698e9875a87bf7e2668730d953
@@ -120,6 +124,6 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 31693de472b911b8b99b89995fb7190cede4438e
+PODFILE CHECKSUM: 3ff5f0a712c6512e8b01710fe6c140680ddd6209
 
 COCOAPODS: 1.5.3

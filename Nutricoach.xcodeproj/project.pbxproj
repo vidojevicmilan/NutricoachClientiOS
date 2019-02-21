@@ -15,6 +15,12 @@
 		F134DE392182407500E5C676 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F134DE382182407500E5C676 /* ChatViewController.swift */; };
 		F134DE3B218240C500E5C676 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F134DE3A218240C500E5C676 /* ProfileViewController.swift */; };
 		F134DE3D2182411400E5C676 /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F134DE3C2182411400E5C676 /* BlogViewController.swift */; };
+		F18951A1221703F200E57EC0 /* NamePageBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18951A0221703F200E57EC0 /* NamePageBulletinItem.swift */; };
+		F18951A3221706A400E57EC0 /* AgePageBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18951A2221706A400E57EC0 /* AgePageBulletinItem.swift */; };
+		F18951A522170B9600E57EC0 /* HeightPageBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18951A422170B9600E57EC0 /* HeightPageBulletinItem.swift */; };
+		F18951A722170EE900E57EC0 /* WeightPageBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18951A622170EE900E57EC0 /* WeightPageBulletinItem.swift */; };
+		F18951A92217101600E57EC0 /* GoalPageBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18951A82217101600E57EC0 /* GoalPageBulletinItem.swift */; };
+		F18951AB2218734900E57EC0 /* ActivityPageBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18951AA2218734900E57EC0 /* ActivityPageBulletinItem.swift */; };
 		F1AE1094216EE4F500C5A185 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AE1093216EE4F500C5A185 /* AppDelegate.swift */; };
 		F1AE1096216EE4F500C5A185 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AE1095216EE4F500C5A185 /* ViewController.swift */; };
 		F1AE1099216EE4F500C5A185 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1AE1097216EE4F500C5A185 /* Main.storyboard */; };
@@ -24,6 +30,11 @@
 		F1AE10B4216EE4F700C5A185 /* NutricoachUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AE10B3216EE4F700C5A185 /* NutricoachUITests.swift */; };
 		F1AE10C2216EE74200C5A185 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1AE10C1216EE74200C5A185 /* GoogleService-Info.plist */; };
 		F1D27BAC21F8CB210084BBD5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D27BAB21F8CB210084BBD5 /* Message.swift */; };
+		F1DE82CD2207C71500CA5E2C /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE82CC2207C71500CA5E2C /* Article.swift */; };
+		F1DE82CF2207CED500CA5E2C /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE82CE2207CED500CA5E2C /* ArticleTableViewCell.swift */; };
+		F1FEB8192207FFCD003745E8 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FEB8182207FFCD003745E8 /* ArticleViewController.swift */; };
+		F1FEB81B220D38BE003745E8 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FEB81A220D38BE003745E8 /* Meal.swift */; };
+		F1FEB81D220EAB94003745E8 /* MealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FEB81C220EAB94003745E8 /* MealViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +68,12 @@
 		F134DE382182407500E5C676 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		F134DE3A218240C500E5C676 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F134DE3C2182411400E5C676 /* BlogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewController.swift; sourceTree = "<group>"; };
+		F18951A0221703F200E57EC0 /* NamePageBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamePageBulletinItem.swift; sourceTree = "<group>"; };
+		F18951A2221706A400E57EC0 /* AgePageBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgePageBulletinItem.swift; sourceTree = "<group>"; };
+		F18951A422170B9600E57EC0 /* HeightPageBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightPageBulletinItem.swift; sourceTree = "<group>"; };
+		F18951A622170EE900E57EC0 /* WeightPageBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightPageBulletinItem.swift; sourceTree = "<group>"; };
+		F18951A82217101600E57EC0 /* GoalPageBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalPageBulletinItem.swift; sourceTree = "<group>"; };
+		F18951AA2218734900E57EC0 /* ActivityPageBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPageBulletinItem.swift; sourceTree = "<group>"; };
 		F1AE1090216EE4F500C5A185 /* Nutricoach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nutricoach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1AE1093216EE4F500C5A185 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1AE1095216EE4F500C5A185 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +89,11 @@
 		F1AE10B5216EE4F700C5A185 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1AE10C1216EE74200C5A185 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1D27BAB21F8CB210084BBD5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		F1DE82CC2207C71500CA5E2C /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		F1DE82CE2207CED500CA5E2C /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		F1FEB8182207FFCD003745E8 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		F1FEB81A220D38BE003745E8 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		F1FEB81C220EAB94003745E8 /* MealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewController.swift; sourceTree = "<group>"; };
 		F5F50552EB05200BF44DC4C9 /* Pods_NutricoachTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NutricoachTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -192,6 +214,14 @@
 			isa = PBXGroup;
 			children = (
 				F1D27BAB21F8CB210084BBD5 /* Message.swift */,
+				F1DE82CC2207C71500CA5E2C /* Article.swift */,
+				F1FEB81A220D38BE003745E8 /* Meal.swift */,
+				F18951A0221703F200E57EC0 /* NamePageBulletinItem.swift */,
+				F18951A2221706A400E57EC0 /* AgePageBulletinItem.swift */,
+				F18951A422170B9600E57EC0 /* HeightPageBulletinItem.swift */,
+				F18951A622170EE900E57EC0 /* WeightPageBulletinItem.swift */,
+				F18951A82217101600E57EC0 /* GoalPageBulletinItem.swift */,
+				F18951AA2218734900E57EC0 /* ActivityPageBulletinItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -201,6 +231,7 @@
 			children = (
 				F1AE109C216EE4F700C5A185 /* LaunchScreen.storyboard */,
 				F1AE1097216EE4F500C5A185 /* Main.storyboard */,
+				F1DE82CE2207CED500CA5E2C /* ArticleTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -214,6 +245,8 @@
 				F134DE382182407500E5C676 /* ChatViewController.swift */,
 				F134DE3A218240C500E5C676 /* ProfileViewController.swift */,
 				F134DE3C2182411400E5C676 /* BlogViewController.swift */,
+				F1FEB8182207FFCD003745E8 /* ArticleViewController.swift */,
+				F1FEB81C220EAB94003745E8 /* MealViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -375,6 +408,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Nutricoach/Pods-Nutricoach-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BulletinBoard/BLTNBoard.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -386,6 +420,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BLTNBoard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -443,11 +478,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F18951A722170EE900E57EC0 /* WeightPageBulletinItem.swift in Sources */,
+				F18951A92217101600E57EC0 /* GoalPageBulletinItem.swift in Sources */,
+				F1DE82CF2207CED500CA5E2C /* ArticleTableViewCell.swift in Sources */,
 				F134DE3B218240C500E5C676 /* ProfileViewController.swift in Sources */,
 				F1AE1096216EE4F500C5A185 /* ViewController.swift in Sources */,
+				F1DE82CD2207C71500CA5E2C /* Article.swift in Sources */,
+				F1FEB81B220D38BE003745E8 /* Meal.swift in Sources */,
 				F1AE1094216EE4F500C5A185 /* AppDelegate.swift in Sources */,
+				F1FEB8192207FFCD003745E8 /* ArticleViewController.swift in Sources */,
+				F18951A1221703F200E57EC0 /* NamePageBulletinItem.swift in Sources */,
+				F18951A3221706A400E57EC0 /* AgePageBulletinItem.swift in Sources */,
+				F18951AB2218734900E57EC0 /* ActivityPageBulletinItem.swift in Sources */,
 				F107C0DF217F5D7C006C374D /* HomeViewController.swift in Sources */,
 				F134DE392182407500E5C676 /* ChatViewController.swift in Sources */,
+				F18951A522170B9600E57EC0 /* HeightPageBulletinItem.swift in Sources */,
+				F1FEB81D220EAB94003745E8 /* MealViewController.swift in Sources */,
 				F1D27BAC21F8CB210084BBD5 /* Message.swift in Sources */,
 				F134DE3721823D9400E5C676 /* MainTabViewController.swift in Sources */,
 				F134DE3D2182411400E5C676 /* BlogViewController.swift in Sources */,

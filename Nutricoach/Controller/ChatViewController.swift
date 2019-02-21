@@ -21,7 +21,6 @@ class ChatViewController: MessagesViewController, UITextFieldDelegate, MessageIn
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         messageInputBar.delegate = self
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
@@ -33,11 +32,6 @@ class ChatViewController: MessagesViewController, UITextFieldDelegate, MessageIn
         database.child("users").child(userID!).child("hasUnreadMessages").setValue("false")
         fetchMessages()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
     
     //TODO: fetch messages and add them to [messages] Array
     func fetchMessages(){

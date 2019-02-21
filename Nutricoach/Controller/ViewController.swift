@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
     var userDefEmail :String?
     var userDefPass :String?
     var justSignedOut :Bool = false
+    static var background = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         SVProgressHUD.show(withStatus: "Welcome")
         emailTextView.delegate = self
         passwordTextView.delegate = self
+        signInButton.layer.cornerRadius = 15
         assignbackground()
         
         //Listen for keyboard events
@@ -55,6 +57,14 @@ class ViewController: UIViewController, UITextFieldDelegate{
             SVProgressHUD.showSuccess(withStatus: "Successfully signed out")
             SVProgressHUD.dismiss(withDelay: 1)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        emailTextView.clipsToBounds = true
+        emailTextView.layer.cornerRadius = 15
+        passwordTextView.clipsToBounds = true
+        passwordTextView.layer.cornerRadius = 15
     }
     
     deinit{
@@ -129,13 +139,13 @@ class ViewController: UIViewController, UITextFieldDelegate{
     }
     
     func assignbackground(){
-        let number = Int.random(in: 1 ... 6)
-        let background = UIImage(named: "background\(number)")
+        let number = Int.random(in: 1 ... 5)
+        ViewController.background = UIImage(named: "background\(number)")!
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
         imageView.contentMode =  UIView.ContentMode.scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = background
+        imageView.image = ViewController.background
         imageView.center = view.center
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)

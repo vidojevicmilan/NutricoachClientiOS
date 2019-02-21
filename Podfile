@@ -13,6 +13,7 @@ pod 'Firebase/Database'
 pod 'SVProgressHUD'
 pod 'ChameleonFramework'
 pod 'MessageKit'
+pod 'BulletinBoard'
 
   target 'NutricoachTests' do
     inherit! :search_paths
