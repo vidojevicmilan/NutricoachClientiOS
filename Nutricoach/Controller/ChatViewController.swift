@@ -31,11 +31,11 @@ class ChatViewController: MessagesViewController, UITextFieldDelegate, MessageIn
         
         database.child("users").child(userID!).child("hasUnreadMessages").setValue("false")
         fetchMessages()
+        
     }
     
-    //TODO: fetch messages and add them to [messages] Array
     func fetchMessages(){
-        database.child("users").child(userID!).child("messages").observe(.childAdded) { (snapshot) in
+        database.child("messages").child(userID!).observe(.childAdded) { (snapshot) in
             let text = snapshot.childSnapshot(forPath: "text").value as! String
             let senderID = snapshot.childSnapshot(forPath: "senderID").value as! String
             let timestamp = snapshot.childSnapshot(forPath: "timestamp").value as! String
@@ -58,7 +58,9 @@ class ChatViewController: MessagesViewController, UITextFieldDelegate, MessageIn
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         let message = ["text": text, "senderID": userID!, "timestamp": "\(NSDate().timeIntervalSince1970)"]
-        database.child("users").child(userID!).child("messages").childByAutoId().setValue(message)
+        database.child("messages").child(userID!).childByAutoId().setValue(message)
+        database.child("users").child(userID!).child("adminHasUnreadMessages").setValue("true")
+        database.child("users").child(userID!).child("hasUnreadMessages").setValue("false")
         inputBar.inputTextView.text = ""
     }
     

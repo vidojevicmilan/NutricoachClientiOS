@@ -8,10 +8,11 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class BlogViewController: UITableViewController {
 
-    var articles = [Article]()
+    var articles = [(id: String, article: Article)]()
     var selectedArticleInex = Int()
     
     override func viewDidLoad() {
@@ -24,14 +25,23 @@ class BlogViewController: UITableViewController {
     
     func fetchArticles() {
         Database.database().reference().child("articles").observe(.childAdded) { (snapshot) in
+            let id = snapshot.key
             let title = snapshot.childSnapshot(forPath: "title").value as! String
             let text = snapshot.childSnapshot(forPath: "text").value as! String
-            let imageBase64 = snapshot.childSnapshot(forPath: "thumbnail").value as! String
-            let dataDecoded:NSData = NSData(base64Encoded: imageBase64, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)!
-            
-            let article = Article(title: title, text: text, thumbnail: UIImage(data: dataDecoded as Data)!)
-            self.articles.insert(article,at: 0)
-            self.tableView.reloadData()
+            var image : UIImage!
+            Storage.storage().reference().child("articles/\(id).png").getData(maxSize: 1024*1024*4, completion: { (data, err) in
+                if err != nil {
+                    image = UIImage(named: "gallery")
+                } else {
+                    image = UIImage(data: data!)
+                }
+                let article = Article(title: title, text: text, thumbnail: image)
+                self.articles.insert((id, article), at: 0)
+                self.articles.sort(by: { (arg0, arg1) -> Bool in
+                    return(arg0.id > arg1.id)
+                })
+                self.tableView.reloadData()
+            })
         }
     }
     
@@ -41,7 +51,7 @@ class BlogViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
-        cell.article = articles[indexPath.row]
+        cell.article = articles[indexPath.row].article
         return cell
     }
     
@@ -54,7 +64,7 @@ class BlogViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToArticle" {
             let vc = segue.destination as! ArticleViewController
-            vc.article = articles[selectedArticleInex]
+            vc.article = articles[selectedArticleInex].article
         }
     }
     

@@ -51,7 +51,7 @@ class ArticleViewController: UIViewController {
         
         let textLabel = UILabel()
         textLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.text = article!.Text + article!.Text + article!.Text
+        textLabel.text = article!.Text
         sv.addSubview(textLabel)
         textLabel.leadingAnchor.constraint(equalTo: sv.leadingAnchor, constant: 10).isActive = true
         textLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
@@ -61,7 +61,4 @@ class ArticleViewController: UIViewController {
         sv.bottomAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20).isActive = true
         
     }
-    
-    
-
 }

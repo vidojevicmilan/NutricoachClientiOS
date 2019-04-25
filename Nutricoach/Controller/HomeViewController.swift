@@ -19,7 +19,9 @@ class HomeViewController: UIViewController {
     var meals = [Meal]()
     var mealsScrollView: UIScrollView!
     var days: UIScrollView!
-    let mealsDB = Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).child("mealPlan")
+    let userId = Auth.auth().currentUser?.uid
+    //let mealsDB = Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).child("mealPlan")
+    let mealsDB = Database.database().reference().child("mealPlans").child((Auth.auth().currentUser?.uid)!)
     let user = Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!)
     var imgv : UIImageView!
     var mealViews = [UIView]()
@@ -86,7 +88,6 @@ class HomeViewController: UIViewController {
         root.isDismissable = false
         root.next = makeNameBulletin()
         root.actionHandler = { (item: BLTNActionItem) in
-            print("Action button tapped")
             root.manager?.displayNextItem()
         }
         return root
@@ -100,7 +101,6 @@ class HomeViewController: UIViewController {
         page.actionButtonTitle = "Next"
         page.next = makeAgeBulletin()
         page.actionHandler = { (item: BLTNActionItem) in
-            print("Name button tapped")
             if page.nameField.text != "" {
                 self.enteredName = page.nameField.text
                 page.manager?.displayNextItem()
@@ -288,7 +288,7 @@ class HomeViewController: UIViewController {
         contentView.backgroundColor = .clear
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.contentMode =  .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.image = ViewController.background
         imageView.center = view.center
@@ -348,7 +348,8 @@ class HomeViewController: UIViewController {
         days.backgroundColor = UIColor.clear
         days.showsHorizontalScrollIndicator = false
         
-        user.child("mealPlan/dates").observe(.value) { (snap) in
+        //user.child("mealPlan/dates").observe(.value)
+        mealsDB.child("dates").observe(.value) { (snap) in
             let dict = snap.value as? [String:Any]
             var keys = [String]()
             
@@ -358,12 +359,25 @@ class HomeViewController: UIViewController {
                 }
             }
             
+            keys.sort(by: { (arg0, arg1) -> Bool in
+                return arg0 < arg1
+            })
+            
+            //self.daysButtons = [UIButton]()
             for i in 0..<keys.count {
                 let button = UIButton()
                 self.days.addSubview(button)
                 self.daysButtons.append(button)
                 button.translatesAutoresizingMaskIntoConstraints = false
-                button.setTitle(keys[i], for: .normal)
+                
+                let form = DateFormatter()
+                form.dateFormat = "yyyyMMdd"
+                let d = form.date(from: keys[i])
+                form.dateFormat = "EEEE, MMM d"
+                let str = form.string(from: d!)
+                
+                button.tag = Int(keys[i])!
+                button.setTitle(str, for: .normal)
                 button.topAnchor.constraint(equalTo: self.days.topAnchor).isActive = true
                 button.heightAnchor.constraint(equalTo: self.days.heightAnchor).isActive = true
                 button.widthAnchor.constraint(equalTo: button.titleLabel!.widthAnchor, constant: 10).isActive = true
@@ -387,7 +401,7 @@ class HomeViewController: UIViewController {
     
     private func daysButtonsHandlersInit() {
         let form = DateFormatter()
-        form.dateFormat = "dd-MM-yyyy"
+        form.dateFormat = "EEEE, MMM d"
         let d = form.string(from: Date())
         
         for b in daysButtons {
@@ -407,8 +421,8 @@ class HomeViewController: UIViewController {
         sender.backgroundColor = UIColor(red: 0, green: 131/255, blue: 249/255, alpha: 1)
         sender.setTitleColor(.white, for: .normal)
         let form = DateFormatter()
-        form.dateFormat = "dd-MM-yyyy"
-        let d = form.date(from: sender.titleLabel!.text!)
+        form.dateFormat = "yyyyMMdd"
+        let d = form.date(from: String(sender!.tag))
         mealsScrollView.removeFromSuperview()
         mealsScrollViewInit()
         fetchMeals(for: d!)
@@ -436,26 +450,31 @@ class HomeViewController: UIViewController {
     
     private func fetchMeals(for date: Date){
         let form = DateFormatter()
-        form.dateFormat = "dd-MM-yyyy"
+        form.dateFormat = "yyyyMMdd"
         let d = form.string(from: date)
-        mealsDB.child("dates/\(d)/meals").observe(.value) { (DataSnapshot) in
+        mealsDB.child("meals/\(d)").observe(.value) { (DataSnapshot) in
             self.populateScrollViewWithMeals(meals: DataSnapshot)
         }
     }
     
+    //TODO: Reimplement this one!!!
     private func populateScrollViewWithMeals(meals: DataSnapshot){
+        for m in mealViews {
+            m.removeFromSuperview()
+        }
         var mealList = [Meal]()
         mealViews = [UIView]()
         let children = meals.children
         for meal in children {
             let m = meal as! DataSnapshot
-            let title = m.childSnapshot(forPath: "title").value as! String
-            
+            //let title = m.childSnapshot(forPath: "title").value as! String
+            let title = m.key
             var ings = [Ingreedient]()
-            let ingreedients = m.childSnapshot(forPath: "ingreedients").children
+            //let ingreedients = m.childSnapshot(forPath: "ingreedients").children
+            let ingreedients = m.children
             for i in ingreedients {
                 let ing = i as! DataSnapshot
-                let ingr = Ingreedient(name: ing.childSnapshot(forPath: "name").value as! String, amount: ing.childSnapshot(forPath: "amount").value as! Int)
+                let ingr = Ingreedient(id: ing.key,name: ing.childSnapshot(forPath: "name").value as! String, amount: ing.childSnapshot(forPath: "amount").value as! Int, unit: ing.childSnapshot(forPath: "unit").value as! String)
                 ings.append(ingr)
             }
             mealList.append(Meal(title: title, ingreedients: ings))
@@ -501,9 +520,9 @@ class HomeViewController: UIViewController {
         for ing in meal.ingreedients {
             let lab = UILabel()
             lab.translatesAutoresizingMaskIntoConstraints = false
-            lab.text = "\(ing.name) : \(ing.amount)"
+            lab.text = "\(ing.name) : \(ing.amount)\(ing.unit)"
             view.addSubview(lab)
-            lab.font = UIFont.systemFont(ofSize: 14.0)
+            lab.font = UIFont.systemFont(ofSize: 17.0)
             lab.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
             lab.topAnchor.constraint(equalTo: previousLab.bottomAnchor, constant: 10).isActive = true
             lab.numberOfLines = 0
@@ -517,7 +536,6 @@ class HomeViewController: UIViewController {
     }
     
     @objc func goToMealVC(_ sender: UITapGestureRecognizer){
-        print("Meal View \(sender.view!.tag) Tapped")
         tappedViewIndex = sender.view!.tag
         performSegue(withIdentifier: "goToMealVC", sender: self)
     }

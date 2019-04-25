@@ -19,11 +19,15 @@ class Meal {
 }
 
 class Ingreedient {
+    var id: String
     var name: String
     var amount: Int
+    var unit: String
     
-    init(name: String, amount: Int){
+    init(id: String, name: String, amount: Int, unit: String){
+        self.id = id
         self.name = name
         self.amount = amount
+        self.unit = unit
     }
 }

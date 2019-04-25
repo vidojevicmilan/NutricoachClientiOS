@@ -140,7 +140,6 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="fHP-IZ-BcV">
                                             <rect key="frame" x="6" y="3" width="363" height="214"/>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OkL-0O-bYw">
                                             <rect key="frame" x="6" y="3" width="363" height="214"/>
