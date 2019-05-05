@@ -35,10 +35,10 @@ class ChatViewController: MessagesViewController, UITextFieldDelegate, MessageIn
     }
     
     func fetchMessages(){
-        database.child("messages").child(userID!).observe(.childAdded) { (snapshot) in
+        database.child("conversations").child("messages").child(userID!).observe(.childAdded) { (snapshot) in
             let text = snapshot.childSnapshot(forPath: "text").value as! String
             let senderID = snapshot.childSnapshot(forPath: "senderID").value as! String
-            let timestamp = snapshot.childSnapshot(forPath: "timestamp").value as! String
+            let timestamp = snapshot.childSnapshot(forPath: "timestamp").value as! Double
             let date = Date(timeIntervalSince1970: TimeInterval("\(timestamp)")!)
             
             let message = Message(sender: Sender(id: senderID, displayName: ""), messageId: snapshot.key, sentDate: date, kind: MessageKind.text(text))
@@ -57,10 +57,12 @@ class ChatViewController: MessagesViewController, UITextFieldDelegate, MessageIn
     }
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        let timestamp = NSDate().timeIntervalSince1970
         let message = ["text": text, "senderID": userID!, "timestamp": "\(NSDate().timeIntervalSince1970)"]
-        database.child("messages").child(userID!).childByAutoId().setValue(message)
+        database.child("conversations").child("messages").child(userID!).childByAutoId().setValue(message)
         database.child("users").child(userID!).child("adminHasUnreadMessages").setValue("true")
         database.child("users").child(userID!).child("hasUnreadMessages").setValue("false")
+        database.child("conversations").child("openConversations").child(userID!).setValue(["unread":true,"latestMessage":text, "timeOfLastMessage":timestamp])
         inputBar.inputTextView.text = ""
     }
     
