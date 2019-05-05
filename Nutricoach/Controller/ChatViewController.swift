@@ -39,7 +39,7 @@ class ChatViewController: MessagesViewController, UITextFieldDelegate, MessageIn
             let text = snapshot.childSnapshot(forPath: "text").value as! String
             let senderID = snapshot.childSnapshot(forPath: "senderID").value as! String
             let timestamp = snapshot.childSnapshot(forPath: "timestamp").value as! Double
-            let date = Date(timeIntervalSince1970: TimeInterval("\(timestamp)")!)
+            let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
             
             let message = Message(sender: Sender(id: senderID, displayName: ""), messageId: snapshot.key, sentDate: date, kind: MessageKind.text(text))
             self.insertNewMessage(message)
@@ -57,8 +57,8 @@ class ChatViewController: MessagesViewController, UITextFieldDelegate, MessageIn
     }
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
-        let timestamp = NSDate().timeIntervalSince1970
-        let message = ["text": text, "senderID": userID!, "timestamp": "\(NSDate().timeIntervalSince1970)"]
+        let timestamp = Double(NSDate().timeIntervalSince1970)
+        let message = ["text": text, "senderID": userID!, "timestamp": timestamp] as [String : Any]
         database.child("conversations").child("messages").child(userID!).childByAutoId().setValue(message)
         database.child("users").child(userID!).child("adminHasUnreadMessages").setValue("true")
         database.child("users").child(userID!).child("hasUnreadMessages").setValue("false")
