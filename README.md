@@ -1,6 +1,10 @@
 # NutricoachClientiOS
 Client iOS App for Nutricoach project
 
+
+### App Icon ###
+<img width="90" alt="Icon-60@3x" src="https://user-images.githubusercontent.com/15714930/57476391-c2c71a80-7296-11e9-93fe-a34304ccdcd2.png">
+
 ### Login View ###
 <img width="338" alt="Screen Shot 2019-05-05 at 13 06 12" src="https://user-images.githubusercontent.com/15714930/57197095-62b53900-6f63-11e9-9a66-c308ef8f0262.png">
 
