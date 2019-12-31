@@ -165,7 +165,7 @@ MealViewController: UIViewController {
                 let pro = snap.childSnapshot(forPath: "protein").value as! Float
                 let carb = snap.childSnapshot(forPath: "carbs").value as! Float
                 let fat = snap.childSnapshot(forPath: "fat").value as! Float
-                
+            
                 let proLab = UILabel()
                 proLab.translatesAutoresizingMaskIntoConstraints = false
                 ingView.addSubview(proLab)
@@ -177,7 +177,7 @@ MealViewController: UIViewController {
                 proLab.textAlignment = .center
                 self.proSum += pro*amount
                 self.protein.text = "Protein:\n" + String(format: "%.01f",self.proSum) + "g"
-                
+            
                 let carbLab = UILabel()
                 carbLab.translatesAutoresizingMaskIntoConstraints = false
                 ingView.addSubview(carbLab)

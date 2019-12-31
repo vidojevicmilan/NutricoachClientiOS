@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 import SVProgressHUD
 
 class ViewController: UIViewController, UITextFieldDelegate{
@@ -90,6 +91,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
                             SVProgressHUD.showError(withStatus: "Error registering")
                         }
                         else{
+                            //...
                             let values = ["name": email,"email": email]
                             Database.database().reference().child("users").child((result?.user.uid)!).updateChildValues(values as [AnyHashable : Any])
                             Auth.auth().signIn(withEmail: email!, password: password!, completion: { (result, error) in
@@ -100,7 +102,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
                                     UserDefaults.standard.set(email!, forKey: "firebaseEmail")
                                     UserDefaults.standard.set(password!, forKey: "firebasePass")
                                     self.signinSuccessfull()
-                                }})
+                                }
+                            })
                         }})
                 }else{
                     UserDefaults.standard.set(email!, forKey: "firebaseEmail")
@@ -116,7 +119,6 @@ class ViewController: UIViewController, UITextFieldDelegate{
         SVProgressHUD.showSuccess(withStatus: "Signed In")
         SVProgressHUD.dismiss(withDelay: 1)
         performSegue(withIdentifier: "goToHome", sender: self)
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

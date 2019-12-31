@@ -24,5 +24,8 @@ class Message: MessageType {
         self.messageId = messageId
         self.sentDate = sentDate
         self.kind = kind
+        
     }
 }
+    
+

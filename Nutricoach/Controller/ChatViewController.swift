@@ -9,7 +9,8 @@
 import UIKit
 import MessageKit
 import MessageInputBar
-import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class ChatViewController: MessagesViewController, UITextFieldDelegate, MessageInputBarDelegate {
 
@@ -20,7 +21,7 @@ class ChatViewController: MessagesViewController, UITextFieldDelegate, MessageIn
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         messageInputBar.delegate = self
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
@@ -29,9 +30,17 @@ class ChatViewController: MessagesViewController, UITextFieldDelegate, MessageIn
         userID = Auth.auth().currentUser?.uid
         database = Database.database().reference()
         
-        database.child("users").child(userID!).child("hasUnreadMessages").setValue("false")
         fetchMessages()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        database.child("users").child(userID!).child("hasUnreadMessages").setValue(false)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        database.child("users").child(userID!).child("hasUnreadMessages").setValue(false)
     }
     
     func fetchMessages(){

@@ -7,17 +7,34 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var signOutButton: UIButton!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var ageTextField: UITextField!
+    @IBOutlet weak var heightTextField: UITextField!
+    @IBOutlet weak var weightTextField: UITextField!
+    @IBOutlet weak var goalTextField: UITextField!
+    @IBOutlet weak var activityTextField: UITextField!
+    
+    var userId = Auth.auth().currentUser?.uid
+    var users = Database.database().reference().child("users")
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        print("PROFILE VIEW CONTROLLER")
+        users.child(userId!).observeSingleEvent(of: .value) { (snapshot) in
+            print(snapshot)
+            self.nameTextField.text = snapshot.childSnapshot(forPath: "name").value as? String
+            self.ageTextField.text = "\(snapshot.childSnapshot(forPath: "userInfo/age").value as? Int ?? 0) years"
+            self.heightTextField.text = "\(snapshot.childSnapshot(forPath: "userInfo/height").value as? Int ?? 0) cm"
+            self.weightTextField.text = "\(snapshot.childSnapshot(forPath: "userInfo/weight").value as? Float ?? 0) kg"
+            self.goalTextField.text = snapshot.childSnapshot(forPath: "userInfo/goal").value as? String
+            self.activityTextField.text = snapshot.childSnapshot(forPath: "userInfo/activity").value as? String
+        }
     }
     
     @IBAction func signOutButtonClick(_ sender: UIButton) {

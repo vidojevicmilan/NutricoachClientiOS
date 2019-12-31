@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 import BLTNBoard
 import SVProgressHUD
 
@@ -17,10 +18,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     var content: UIView!
     var meals = [Meal]()
-    var mealsScrollView: UIScrollView!
     var days: UIScrollView!
+    var insetBar: UIView!
+    var mealsScrollView: UIScrollView!
     let userId = Auth.auth().currentUser?.uid
-    //let mealsDB = Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).child("mealPlan")
     let mealsDB = Database.database().reference().child("mealPlans").child((Auth.auth().currentUser?.uid)!)
     let user = Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!)
     var imgv : UIImageView!
@@ -46,14 +47,12 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         setBackground()
         chatButtonImageInit()
         user.child("hasCompletedRegistration").observeSingleEvent(of: .value) { (snap) in
             let registrationCompleted = snap.value as? Bool ?? false
             if !registrationCompleted {
                 self.initSurvey()
-                
             } else {
                 self.initData()
             }
@@ -65,19 +64,8 @@ class HomeViewController: UIViewController {
     }
     
     private func initData() {
-        user.child("userInfo").observe(.value) { (snap) in
-            let children = snap.value as? [String:Any]
-            self.enteredAge = children!["age"] as? Int
-            self.enteredHeight = children!["height"] as? Int
-            self.enteredWeight = children!["weight"] as? Float
-            self.enteredGoal = children!["goal"] as? String
-            self.enteredActivity = children!["activity"] as? String
-            
             self.goalsViewInit()
             self.daysScrollViewInit()
-            self.mealsScrollViewInit()
-            self.fetchMeals(for: Date())
-        }
     }
     
     func makeWelcomeBulletin() -> BLTNPageItem {
@@ -272,7 +260,7 @@ class HomeViewController: UIViewController {
         self.view.addSubview(self.imgv)
         self.imgv.isHidden = true
         user.child("hasUnreadMessages").observe(.value) { (snapshot) in
-            if snapshot.value as? String == "true"{
+            if snapshot.value as? Bool == true{
                 self.imgv.isHidden = false
             }else{
                 self.imgv.isHidden = true
@@ -338,18 +326,31 @@ class HomeViewController: UIViewController {
     }
     
     private func daysScrollViewInit() {
-        days = UIScrollView()
-        contentView.addSubview(days)
-        days.translatesAutoresizingMaskIntoConstraints = false
-        days.topAnchor.constraint(equalTo: content.bottomAnchor, constant: 3).isActive = true
-        days.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        days.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        days.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        days.backgroundColor = UIColor.clear
-        days.showsHorizontalScrollIndicator = false
         
-        //user.child("mealPlan/dates").observe(.value)
         mealsDB.child("dates").observe(.value) { (snap) in
+            
+            if self.days != nil {
+                self.days.removeFromSuperview()
+            }
+            self.days = UIScrollView()
+            self.contentView.addSubview(self.days)
+            self.days.translatesAutoresizingMaskIntoConstraints = false
+            self.days.topAnchor.constraint(equalTo: self.content.bottomAnchor, constant: 3).isActive = true
+            self.days.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+            self.days.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+            self.days.heightAnchor.constraint(equalToConstant: 25).isActive = true
+            self.days.backgroundColor = UIColor.clear
+            self.days.showsHorizontalScrollIndicator = false
+            
+            self.insetBar = UIView()
+            self.contentView.addSubview(self.insetBar)
+            self.insetBar.translatesAutoresizingMaskIntoConstraints = false
+            self.insetBar.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+            self.insetBar.heightAnchor.constraint(equalToConstant: 1).isActive = true
+            self.insetBar.widthAnchor.constraint(equalToConstant: self.view.frame.width - 50).isActive = true
+            self.insetBar.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+            self.insetBar.topAnchor.constraint(equalTo: self.days.bottomAnchor, constant: 3).isActive = true
+            
             let dict = snap.value as? [String:Any]
             var keys = [String]()
             
@@ -363,7 +364,7 @@ class HomeViewController: UIViewController {
                 return arg0 < arg1
             })
             
-            //self.daysButtons = [UIButton]()
+            self.daysButtons = [UIButton]()
             for i in 0..<keys.count {
                 let button = UIButton()
                 self.days.addSubview(button)
@@ -392,6 +393,7 @@ class HomeViewController: UIViewController {
                 }
                 
             }
+            
             if self.daysButtons.count != 0 {
                 self.days.trailingAnchor.constraint(equalTo: self.daysButtons.last!.trailingAnchor, constant: 6).isActive = true
                 self.daysButtonsHandlersInit()
@@ -409,6 +411,7 @@ class HomeViewController: UIViewController {
             if b.titleLabel?.text == d {
                 b.backgroundColor = UIColor(red: 0, green: 131/255, blue: 249/255, alpha: 1)
                 b.setTitleColor(.white, for: .normal)
+                dayButtonTap(sender: b)
             }
         }
     }
@@ -423,27 +426,20 @@ class HomeViewController: UIViewController {
         let form = DateFormatter()
         form.dateFormat = "yyyyMMdd"
         let d = form.date(from: String(sender!.tag))
-        mealsScrollView.removeFromSuperview()
         mealsScrollViewInit()
         fetchMeals(for: d!)
     }
     
     private func mealsScrollViewInit() {
-        let insetBar = UIView()
-        contentView.addSubview(insetBar)
-        insetBar.translatesAutoresizingMaskIntoConstraints = false
-        insetBar.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
-        insetBar.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        insetBar.widthAnchor.constraint(equalToConstant: self.view.frame.width - 50).isActive = true
-        insetBar.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        insetBar.topAnchor.constraint(equalTo: days.bottomAnchor, constant: 3).isActive = true
-        
+        if mealsScrollView != nil {
+            mealsScrollView.removeFromSuperview()
+        }
         mealsScrollView = UIScrollView()
         contentView.addSubview(mealsScrollView)
         
         mealsScrollView.translatesAutoresizingMaskIntoConstraints = false
         mealsScrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        mealsScrollView.topAnchor.constraint(equalTo: insetBar.bottomAnchor, constant: 3).isActive = true
+        mealsScrollView.topAnchor.constraint(equalTo: self.insetBar.bottomAnchor, constant: 3).isActive = true
         mealsScrollView.widthAnchor.constraint(equalToConstant: contentView.frame.width).isActive = true
         mealsScrollView.backgroundColor = UIColor.clear
     }
@@ -457,7 +453,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-    //TODO: Reimplement this one!!!
     private func populateScrollViewWithMeals(meals: DataSnapshot){
         for m in mealViews {
             m.removeFromSuperview()

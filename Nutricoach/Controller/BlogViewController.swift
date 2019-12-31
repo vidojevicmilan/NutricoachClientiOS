@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseDatabase
 import FirebaseStorage
 
 class BlogViewController: UITableViewController {
@@ -20,17 +20,19 @@ class BlogViewController: UITableViewController {
 
         // Do any additional setup after loading the view.
         print("BLOG VIEW CONTROLLER")
-        fetchArticles()
+        articleAddedListener()
+        articleChangedListener()
+        articleRemovedListener()
     }
     
-    func fetchArticles() {
+    func articleAddedListener() {
         Database.database().reference().child("articles").observe(.childAdded) { (snapshot) in
             let id = snapshot.key
             let title = snapshot.childSnapshot(forPath: "title").value as! String
             let text = snapshot.childSnapshot(forPath: "text").value as! String
             var image : UIImage!
             Storage.storage().reference().child("articles/\(id).png").getData(maxSize: 1024*1024*4, completion: { (data, err) in
-                if err != nil {
+                if err != nil || data == nil {
                     image = UIImage(named: "gallery")
                 } else {
                     image = UIImage(data: data!)
@@ -42,6 +44,43 @@ class BlogViewController: UITableViewController {
                 })
                 self.tableView.reloadData()
             })
+        }
+    }
+    
+    func articleChangedListener() {
+        Database.database().reference().child("articles").observe(.childChanged) { (snap) in
+            let id = snap.key
+            let title = snap.childSnapshot(forPath: "title").value as! String
+            let text = snap.childSnapshot(forPath: "text").value as! String
+            var image : UIImage!
+            
+            Storage.storage().reference().child("articles/\(id).png").getData(maxSize: 1024*1024*4, completion: { (data, err) in
+                if err != nil {
+                    image = UIImage(named: "gallery")
+                } else {
+                    image = UIImage(data: data!)
+                }
+                
+                for i in 0..<self.articles.count {
+                    if self.articles[i].id == id {
+                        self.articles[i].article = Article(title: title, text: text, thumbnail: image)
+                    }
+                }
+                self.tableView.reloadData()
+            })
+        }
+    }
+    
+    func articleRemovedListener(){
+        Database.database().reference().child("articles").observe(.childRemoved) { (snapshot) in
+            let id = snapshot.key
+            for index in 0..<self.articles.count {
+                if self.articles[index].id == id {
+                    self.articles.remove(at: index)
+                    self.tableView.reloadData()
+                    return
+                }
+            }
         }
     }
     
